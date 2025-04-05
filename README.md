@@ -1,13 +1,40 @@
-Steps to Install and Run the Backend
+# 🛠️ Backend Setup Guide
 
-Install Dependencies:
+Follow these steps to set up and run the backend locally:
+
+---
+
+## 📦 1. Install Dependencies
+
+Open your terminal in the backend project directory and run:
+
+```bash
 npm install
+```
 
-Start the Development Server:
+This installs all the required packages listed in your `package.json`.
+
+---
+
+## 🔐 2. Create a `.env` File
+
+Inside the root of your backend folder, create a file named `.env` and add the following environment variables:
+
+```env
+DATABASE=your_mongodb_database_url
+JWT_SECRET=3ef3541a3a1f3f4d11fddcf23dcff91ee534fe50d96a63bfaf2cc4db269ee1119390851c466002184345849982c203e9e622c51cc25ba8d35780f820e33413bc
+```
+
+Replace `your_mongodb_database_url` with your actual MongoDB connection string.
+
+---
+
+## 🚀 3. Start the Server
+
+To start the backend server in development mode, run:
+
+```bash
 npm run dev
+```
 
-Kindly find the FrontEnd repository link below 
-https://github.com/vishnu14279/To-do-Application-Front-End
-
-Kindly Find the Demo video link below
-https://drive.google.com/file/d/1h06ean8tm7X45er2NxcyRTmpfbcly7R2/view?usp=sharing
+Make sure the server starts without errors and connects to the MongoDB database successfully.
