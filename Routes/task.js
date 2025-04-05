@@ -5,13 +5,16 @@ const {
   getTasks,
   updateTask,
   deleteTask,
+  getTaskById
 } = require("../Controller/taskController");
+const validateTask = require("../middleware/validateTasks");
 
 const router = express.Router();
 
-router.post("/create", createTask);
+router.post("/create",validateTask, createTask);
 router.get("/getTasks", getTasks);
-router.put("/updateTask/:id", updateTask);
-router.delete("/deleteTask/:id/:userid", deleteTask);
+router.get("/getTask/:id", getTaskById);
+router.put("/updateTask/:id",validateTask, updateTask);
+router.delete("/deleteTask/:id", deleteTask);
 
 module.exports = router;

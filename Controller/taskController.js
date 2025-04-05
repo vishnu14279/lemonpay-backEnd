@@ -3,7 +3,7 @@ const Task = require("../Model/Task");
 const createTask = async (req, res) => {
   const { taskName, description, dueDate} = req.body;
 
-  if (!title || !dueDate) {
+  if (!taskName || !dueDate) {
     return res.status(400).json({ error: "Title and Due Date are required." });
   }
 
@@ -35,7 +35,7 @@ const updateTask = async (req, res) => {
 
 const deleteTask = async (req, res) => {
   const { id: taskId } = req.params;
-  const task = await Task.findById(taskId);
+  const task = await Task.findByIdAndDelete(taskId);
 
   if (!task) {
     return res.status(404).json({ error: "Task not found" });
@@ -44,10 +44,32 @@ const deleteTask = async (req, res) => {
   res.status(200).json({ message: "Task deleted successfully" });
 };
 
+// controllers/taskController.js
+
+
+const getTaskById = async (req, res) => {
+  try {
+    const taskId = req.params.id;
+
+    const task = await Task.findById(taskId);
+
+    if (!task) {
+      return res.status(404).json({ message: "Task not found" });
+    }
+
+    res.status(200).json(task);
+  } catch (error) {
+    console.error("Error getting task by ID:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+
 
 module.exports = {
   createTask,
   getTasks,
   updateTask,
-  deleteTask
+  deleteTask,
+  getTaskById
 };
